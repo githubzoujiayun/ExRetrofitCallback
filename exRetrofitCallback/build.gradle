@@ -36,7 +36,7 @@ publish {
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    provided 'com.squareup.retrofit2:retrofit:2.3.0'
-    provided 'com.android.support:support-v4:27.0.2'
-    provided 'com.xiaolei:OkhttpCacheInterceptor:1.0.5'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.android.support:support-v4:27.0.2'
+    api 'com.xiaolei:OkhttpCacheInterceptor:1.0.5'
 }
