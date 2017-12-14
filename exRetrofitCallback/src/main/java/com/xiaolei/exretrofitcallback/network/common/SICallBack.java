@@ -13,6 +13,7 @@ import com.xiaolei.exretrofitcallback.network.regist.ResponseBeanRegisterTable;
 import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.lang.reflect.Method;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -69,7 +70,7 @@ public abstract class SICallBack<T> implements Callback<T>
         {
             if (response.isSuccessful())
             {
-                onNext(response.body(),response);
+                onNext(response.body(), response);
             } else
             {
                 onFail(new IOException(response.code() + ""));
@@ -145,12 +146,20 @@ public abstract class SICallBack<T> implements Callback<T>
             if (CacheType.DISK_CACHE.equals(response.message())
                     || CacheType.MEMORY_CACHE.equals(response.message()))//是来自缓存吗？？
             {
-                onCache(bodyBean);//走缓存的Callback
-            }else 
+                try
+                {
+                    onCache(bodyBean);//走缓存的Callback
+                } catch (Exception e)
+                {
+                } finally
+                {
+                    onFail(new IOException("request Fail will invoke onCache(T)"));
+                }
+            } else
             {
                 onSuccess(bodyBean);//走成功的Callback
             }
-            
+
         } catch (Exception e)
         {
             e.printStackTrace();

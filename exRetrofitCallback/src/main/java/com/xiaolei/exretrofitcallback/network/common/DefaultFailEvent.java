@@ -19,7 +19,7 @@ public class DefaultFailEvent implements IFiedFailEvent
     @Override
     public void onFail(SICallBack callBack, Throwable t, Context context)
     {
-        Log.e("FailEvent", "发生异常回调处:" + new StackTraceElement(klassName,"onFail","klassName",20) + "\n如果要修改，则可以调用:" + configKlassName + ".fiedFailEventClass=你的自己定义的统一失败处理方式。");
+        Log.e("FailEvent", "发生异常回调处:" + klassName + "\n如果要修改，则可以调用:" + configKlassName + ".fiedFailEventClass=你的自己定义的统一失败处理方式。");
         long nowTime = System.currentTimeMillis();
         if (nowTime - lastToastTime > 10 * 1000)// 超过十秒
         {

@@ -48,20 +48,20 @@ public class MainActivity extends Activity
             {
                 Log.d("MainActivity", "onSuccess");
             }
-
+            
             @Override
             public void onCache(DataBean result) throws Exception
             {
                 Log.d("MainActivity", "onCache");
             }
-
+            
             @Override
             public void onFail(Throwable t)
             {
                 super.onFail(t);
                 Log.d("MainActivity", "onFail:");
             }
-
+            
             @Override
             public void onFinally()
             {
