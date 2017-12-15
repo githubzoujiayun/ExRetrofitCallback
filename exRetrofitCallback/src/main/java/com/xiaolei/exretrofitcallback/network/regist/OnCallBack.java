@@ -16,4 +16,10 @@ import java.lang.annotation.Target;
 public @interface OnCallBack
 {
     String value();
+
+    /**
+     * 是否拦截下一步？如果为true，则除了onFinally，后续步骤不进行。比如onSuccess
+     * @return
+     */
+    boolean stopNextStep() default true;
 }

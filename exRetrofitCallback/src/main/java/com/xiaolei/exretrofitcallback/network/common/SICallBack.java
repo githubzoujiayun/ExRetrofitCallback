@@ -3,10 +3,12 @@ package com.xiaolei.exretrofitcallback.network.common;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 
 import com.xiaolei.OkhttpCacheInterceptor.CacheType;
 import com.xiaolei.exretrofitcallback.network.Config;
+import com.xiaolei.exretrofitcallback.network.regist.MethodWrap;
 import com.xiaolei.exretrofitcallback.network.regist.ResponseBeanRegister;
 import com.xiaolei.exretrofitcallback.network.regist.ResponseBeanRegisterTable;
 
@@ -44,9 +46,9 @@ public abstract class SICallBack<T> implements Callback<T>
         this(fragment.getActivity());
     }
 
-    public abstract void onSuccess(T result) throws Exception;
+    public abstract void onSuccess(@NonNull T result) throws Exception;
 
-    public void onFail(Throwable t)
+    public void onFail(@NonNull Throwable t)
     {
         if (checkActivityFinish())
             return;
@@ -59,7 +61,7 @@ public abstract class SICallBack<T> implements Callback<T>
 
     public abstract void onFinally();
 
-    public abstract void onCache(T result) throws Exception;
+    public abstract void onCache(@NonNull T result) throws Exception;
 
     @Override
     public void onResponse(Call<T> call, Response<T> response)
@@ -114,7 +116,8 @@ public abstract class SICallBack<T> implements Callback<T>
                     String callback = registObj.filter(bodyBean);
                     if (callback != null && !callback.isEmpty())
                     {
-                        Method method = registObj.getMethod(callback);
+                        MethodWrap methodWrap = registObj.getMethodWraps(callback);
+                        Method method = methodWrap.getMethod();
                         if (method != null)
                         {
                             Class paramTypes[] = method.getParameterTypes();//获取参数类型集合
@@ -138,7 +141,12 @@ public abstract class SICallBack<T> implements Callback<T>
                                 method.setAccessible(true);
                             }
                             method.invoke(registObj, objs);
-                            return;
+                            if (methodWrap.getTag() != null
+                                    && (((boolean.class.isInstance(methodWrap.getTag())) && (boolean) methodWrap.getTag())
+                                    || ((Boolean.class.isInstance(methodWrap.getTag())) && (Boolean) methodWrap.getTag()))) // 标识为跳过下一步，才return跳过。
+                            {
+                                return;
+                            }
                         }
                     }
                 }

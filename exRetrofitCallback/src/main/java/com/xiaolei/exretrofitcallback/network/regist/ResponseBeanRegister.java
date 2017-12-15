@@ -23,7 +23,7 @@ public abstract class ResponseBeanRegister<ResponseBeanType>
         return methods;
     }
 
-    public Method getMethod(String callBackStr)
+    public MethodWrap getMethodWraps(String callBackStr)
     {
         if (arrayMap.isEmpty())
         {
@@ -41,7 +41,15 @@ public abstract class ResponseBeanRegister<ResponseBeanType>
                 }
             }
         }
-        return arrayMap.get(callBackStr);
+        Method method = arrayMap.get(callBackStr);
+        MethodWrap methodWrap = new MethodWrap(method);
+        if(method != null)
+        {
+            OnCallBack onCallBack = method.getAnnotation(OnCallBack.class);
+            boolean stopNextStep = onCallBack.stopNextStep();
+            methodWrap.setTag(stopNextStep);
+        }
+        return methodWrap;
     }
 
     /**

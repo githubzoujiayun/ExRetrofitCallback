@@ -23,7 +23,7 @@ public class DefaultFailEvent implements IFiedFailEvent
         long nowTime = System.currentTimeMillis();
         if (nowTime - lastToastTime > 10 * 1000)// 超过十秒
         {
-            Toast.makeText(context, "网络异常.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "网络异常~请检查手机联网状态~", Toast.LENGTH_SHORT).show();
         }
     }
 }

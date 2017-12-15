@@ -2,10 +2,12 @@ package com.xiaolei.exretrofitcallbackexample;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.xiaolei.exretrofitcallback.network.Config;
 import com.xiaolei.exretrofitcallback.network.common.SCallBack;
 import com.xiaolei.exretrofitcallbackexample.Net.DataBean;
 import com.xiaolei.exretrofitcallbackexample.Net.Net;
@@ -32,7 +34,9 @@ public class MainActivity extends Activity
                 Click();
             }
         });
-
+        
+        Config.setFiedFailEventClass(MyFailEvent.class);
+        Config.registResponseBean(DataBean.class,MyRegister.class);
     }
 
 
@@ -44,13 +48,13 @@ public class MainActivity extends Activity
         call.enqueue(new SCallBack<DataBean>(this)
         {
             @Override
-            public void onSuccess(DataBean result) throws Exception
+            public void onSuccess(@NonNull DataBean result) throws Exception
             {
-                Log.d("MainActivity", "onSuccess");
+                Log.d("MainActivity", "onSuccess:"+result.getLat());
             }
             
             @Override
-            public void onCache(DataBean result) throws Exception
+            public void onCache(@NonNull DataBean result) throws Exception
             {
                 Log.d("MainActivity", "onCache");
             }
