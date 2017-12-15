@@ -19,19 +19,38 @@ public class MainActivity extends Activity
 {
     RetrofitBase retrofitBase;
     Button button;
-
+    Button button2;
+    Button button3;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button = findViewById(R.id.button);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Click();
+                Click("兰州市");
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Click("深圳市");
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Click("南昌市");
             }
         });
         
@@ -40,11 +59,11 @@ public class MainActivity extends Activity
     }
 
 
-    private void Click()
+    private void Click(String city)
     {
         retrofitBase = new RetrofitBase(this);
         Net net = retrofitBase.getRetrofit().create(Net.class);
-        Call<DataBean> call = net.getIndex("兰州市");
+        Call<DataBean> call = net.getIndex(city);
         call.enqueue(new SCallBack<DataBean>(this)
         {
             @Override
@@ -73,4 +92,5 @@ public class MainActivity extends Activity
             }
         });
     }
+    
 }

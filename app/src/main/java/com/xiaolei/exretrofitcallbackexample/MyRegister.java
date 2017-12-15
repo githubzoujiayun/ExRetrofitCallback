@@ -21,10 +21,16 @@ public class MyRegister extends ResponseBeanRegister<DataBean>
         return bean.getLat();
     }
     
-    @OnCallBack(value = "36.06108",stopNextStep = false)
+    @OnCallBack(value = "36.06108")//兰州市
     public void onInLanzhou(Context context)
     {
-        Log.d("MainActivity", "被我拦截了，之后的步骤除了onFinally，啥都做不了啦");
+        Log.d("MainActivity", "拦截：兰州市");
+    }
+
+    @OnCallBack(value = "22.54309",stopNextStep = false)//深圳市
+    public void onInShenzhen(Context context)
+    {
+        Log.d("MainActivity", "拦截：深圳市");
     }
     
 }
