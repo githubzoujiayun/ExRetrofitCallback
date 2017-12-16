@@ -28,7 +28,7 @@ import retrofit2.Response;
 public abstract class SICallBack<T> implements Callback<T>
 {
     public SoftReference<Context> context;
-    private IFiedFailEvent failEvent;
+    private IFailEvent failEvent;
 
     public SICallBack(Context context)
     {

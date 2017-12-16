@@ -25,11 +25,8 @@ public abstract class SCallBack<T> extends SICallBack<T>
         super(fragment);
     }
 
-
     @Override
-    public void onFinally()
-    {
-    }
+    public abstract void onSuccess(T result) throws Exception;
 
     @Override
     public void onCache(T result) throws Exception
@@ -42,7 +39,7 @@ public abstract class SCallBack<T> extends SICallBack<T>
     {
         super.onFail(t);
     }
-    
+
     @Override
-    public abstract void onSuccess(T result) throws Exception;
+    public void onFinally() { }
 }

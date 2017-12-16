@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
 import com.xiaolei.exretrofitcallback.network.Config;
@@ -29,32 +28,11 @@ public class MainActivity extends Activity
         button = findViewById(R.id.button);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Click("兰州市");
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Click("深圳市");
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Click("南昌市");
-            }
-        });
+        button.setOnClickListener(v -> Click("兰州市"));
+        button2.setOnClickListener(v -> Click("深圳市"));
+        button3.setOnClickListener(v -> Click("南昌市"));
         
-        Config.setFiedFailEventClass(MyFailEvent.class);
+        Config.setFailedEventClass(MyFailEvent.class);
         Config.registResponseBean(DataBean.class,MyRegister.class);
     }
 

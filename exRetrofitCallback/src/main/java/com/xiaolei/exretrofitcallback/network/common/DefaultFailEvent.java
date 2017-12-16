@@ -10,7 +10,7 @@ import com.xiaolei.exretrofitcallback.network.Config;
  * 默认的统一的失败提示接口
  * Created by xiaolei on 2017/11/14.
  */
-public class DefaultFailEvent implements IFiedFailEvent
+public class DefaultFailEvent implements IFailEvent
 {
     private long lastToastTime = -1;
     private String klassName = DefaultFailEvent.class.getName();

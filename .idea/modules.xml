@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ExRetrofitCallbackExample.iml" filepath="$PROJECT_DIR$/ExRetrofitCallbackExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ExRetrofitCallback.iml" filepath="$PROJECT_DIR$/ExRetrofitCallback.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/exRetrofitCallback/exRetrofitCallback.iml" filepath="$PROJECT_DIR$/exRetrofitCallback/exRetrofitCallback.iml" />
     </modules>

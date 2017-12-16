@@ -1,7 +1,7 @@
 package com.xiaolei.exretrofitcallback.network;
 
 import com.xiaolei.exretrofitcallback.network.common.DefaultFailEvent;
-import com.xiaolei.exretrofitcallback.network.common.IFiedFailEvent;
+import com.xiaolei.exretrofitcallback.network.common.IFailEvent;
 import com.xiaolei.exretrofitcallback.network.regist.ResponseBeanRegister;
 import com.xiaolei.exretrofitcallback.network.regist.ResponseBeanRegisterTable;
 
@@ -13,12 +13,12 @@ public class Config
 {
     /**
      * 设置统一的网络失败处理方式<br/>
-     * 处理流程：onFail -> IFiedFailEvent.onFail
+     * 处理流程：onFail -> IFailEvent.onFail
      * 这里需要注意的是，如果你重写了SICallBack的onFail方法，并且不调用super.onFail，
      * 那么，则不会走统一的处理方式。
      * @param klass
      */
-    public static void setFiedFailEventClass(Class<? extends IFiedFailEvent> klass)
+    public static void setFailedEventClass(Class<? extends IFailEvent> klass)
     {
         fiedFailEventClass = klass;
     }
@@ -34,5 +34,5 @@ public class Config
         ResponseBeanRegisterTable.getInstance().regist(klass,registClass);
     }
     
-    public static Class<? extends IFiedFailEvent> fiedFailEventClass = DefaultFailEvent.class;
+    public static Class<? extends IFailEvent> fiedFailEventClass = DefaultFailEvent.class;
 }
