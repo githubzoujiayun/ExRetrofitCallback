@@ -32,8 +32,8 @@ public class MainActivity extends Activity
         button2.setOnClickListener(v -> Click("深圳市"));
         button3.setOnClickListener(v -> Click("南昌市"));
         
-        Config.setFailedEventClass(MyFailEvent.class);
-        Config.registResponseBean(DataBean.class,MyRegister.class);
+        Config.setFailedEventClass(MyFailEvent.class);//统一出错处理方式
+        Config.registResponseBean(DataBean.class,MyRegister.class);//路由之间跳转的注册
     }
 
 
