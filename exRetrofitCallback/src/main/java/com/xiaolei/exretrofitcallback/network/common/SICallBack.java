@@ -6,7 +6,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 
-import com.xiaolei.OkhttpCacheInterceptor.CacheType;
 import com.xiaolei.exretrofitcallback.network.Config;
 import com.xiaolei.exretrofitcallback.network.regist.MethodWrap;
 import com.xiaolei.exretrofitcallback.network.regist.ResponseBeanRegister;
@@ -151,8 +150,8 @@ public abstract class SICallBack<T> implements Callback<T>
                     }
                 }
             }
-            if (CacheType.DISK_CACHE.equals(response.message())
-                    || CacheType.MEMORY_CACHE.equals(response.message()))//是来自缓存吗？？
+            if ("from disk cache".equals(response.message())
+                    || "from memory cache".equals(response.message()))//是来自缓存吗？？
             {
                 try
                 {
